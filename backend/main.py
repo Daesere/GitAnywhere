@@ -86,6 +86,19 @@ def create_coord():
 
     return jsonify({"message": "Coord created!"}), 201
 
+# DELETE
+@app.route("/delete_coord", methods=["DELETE"])
+def delete_coord():
+    coord = Coordinates.query.first()
+
+    if not coord:
+        return jsonify({"message": "Already Clear"}), 404
+    
+    db.session.delete(coord)
+    db.session.commit()
+
+    return jsonify({"message": "Coord deleted"}), 200
+
 ### PATHS
 #READ Recent Path
 @app.route("/paths", methods=['GET'])

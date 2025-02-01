@@ -3,6 +3,7 @@ import UserList from './UserList'
 import './App.css'
 import UserForm from './UserForm'
 import CoordForm from './CoordForm'
+import CoordNuke from './CoordNuke'
 
 function App() {
   const [users, setUsers] = useState([])
@@ -53,7 +54,13 @@ function App() {
         <CoordForm updateCallback={ onUpdate } />
       }
     </div>
-    
+    <br />
+    <br />
+    <br />
+    <div>
+      <CoordNuke />
+    </div>
+
   </>
     
   

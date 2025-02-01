@@ -2,7 +2,7 @@
 from flask import request, jsonify
 from config import app, db
 from models import User, Coordinates, Path
-
+from gee_data import create_map
 ## USER LIST
 # READ
 @app.route("/users", methods=['GET'])
@@ -123,11 +123,12 @@ def create_path(coord_id):
         height = user.height
     else:
         weight = 70
-        height = 170
+        height = 1.70
 
-    coord_tuple = ((coord.longitude_1, coord.latitude_1), (coord.longitude_2, coord.latitude_2), (weight, height))
+    coord_tuple = ((coord.longitude_1, coord.latitude_1), (coord.longitude_2, coord.latitude_2), weight, height)
     #GET PATH WITH COOL FUNCTION
-    new_path = "HTML COOL PATH"
+    create_map(coord_tuple)
+    new_path = "route_map.html"
     
     try:
         db.session.add(new_path)

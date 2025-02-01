@@ -64,7 +64,7 @@ def get_points(start_c, end_c, scale):
     print('sample points obtained')
     return coordinate_elevation_pairs
 
-def create_path(start_c, end_c, scale):
+def create_path(start_c, end_c, scale, bodyweight=70, height=1.70):
 
     points_c = get_points(start_c, end_c, scale)
     points_m = []
@@ -87,11 +87,11 @@ def path_to_coords(path, scale, start_m, end_m):
     
     return coord_path
 
-def create_map(start_c, end_c):
+def create_map(start_c, end_c, bodyweight=70, height=1.70):
     start_m, end_m = (0,0), coords_to_m(start_c, end_c)
     scale = get_scale(start_m, end_m)
 
-    path, cost = create_path(start_c, end_c, scale)
+    path, cost = create_path(start_c, end_c, scale, bodyweight, height)
     print(path)
     coord_path = path_to_coords(path, scale, start_m, end_m)
     print(coord_path)

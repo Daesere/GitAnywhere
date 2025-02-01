@@ -1,0 +1,75 @@
+import { useState } from 'react';
+
+const CoordForm = ({ updateCallback }) => {
+    const [latitude_1, setLatitude_1] = useState("");
+    const [longitude_1, setLongitude_1] = useState("");
+    const [latitude_2, setLatitude_2] = useState("");
+    const [longitude_2, setLongitude_2] = useState("");
+
+    const onSubmit = async (e) => {
+        e.preventDefault()
+
+        const data = {
+            latitude_1,
+            longitude_1,
+            latitude_2,
+            longitude_2
+        }
+        const url = "http://127.0.0.1:5000/create_coord"
+        const options = {
+            method: "POST",
+            headers: {
+                'Content-Type': "application/json"
+            },
+            body: JSON.stringify(data)
+        }
+        const response = await fetch(url, options)
+        if (response.status !== 201 && response.status !== 200) {
+            const data = await response.json()
+            alert(data.message)
+        } else {
+            updateCallback()
+        }
+    }
+    return <form onSubmit={onSubmit}>
+        <div>
+            <label htmlFor="latitude_1">Lat1:</label>
+            <input
+                type="text"
+                id="latitude_1"
+                value={latitude_1}
+                onChange={(e) => setLatitude_1(e.target.value)}
+            />
+        </div>
+        <div>
+            <label htmlFor="longitude_1">Long1:</label>
+            <input
+                type="text"
+                id="longitude_1"
+                value={longitude_1}
+                onChange={(e) => setLongitude_1(e.target.value)}
+            />
+        </div>
+        <div>
+            <label htmlFor="latitude_2">Lat2:</label>
+            <input
+                type="text"
+                id="latitude_2"
+                value={latitude_2}
+                onChange={(e) => setLatitude_2(e.target.value)}
+            />
+        </div>
+        <div>
+            <label htmlFor="longitude_2">Long2:</label>
+            <input
+                type="text"
+                id="longitude_2"
+                value={longitude_2}
+                onChange={(e) => setLongitude_2(e.target.value)}
+            />
+        </div>
+        <button type="submit">Create</button>
+    </form>
+}
+
+export default CoordForm

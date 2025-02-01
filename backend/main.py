@@ -66,7 +66,7 @@ def get_coords():
     return jsonify({"coords": [coord.to_json() for coord in coords]})
 
 #Create coord object
-@app.route("/create_coord", methods=['GET'])
+@app.route("/create_coord", methods=['POST'])
 def create_coord():    
     longitude_1 = request.json.get("longitude_1")
     latitude_1 = request.json.get("latitude_1")
@@ -74,7 +74,7 @@ def create_coord():
     latitude_2 = request.json.get("latitude_2")
 
     if not longitude_1 or not latitude_1 or not longitude_2 or not latitude_2:
-        return (jsonify({"message": "Invalid data"}), 400,)
+        return (jsonify({"message": "Missing coords"}), 400,)
     
     new_coord = Coordinates(longitude_1=longitude_1, latitude_1=latitude_1, longitude_2=longitude_2, latitude_2=latitude_2)
 
@@ -91,6 +91,8 @@ def create_coord():
 @app.route("/paths", methods=['GET'])
 def get_paths():
     paths = Path.query.first()
+    if not paths:
+        return jsonify({"message": "No paths found"})
     return jsonify({"paths": [path.to_json() for path in paths]})
 
 #Create path
@@ -110,9 +112,6 @@ def create_path(coord_id):
         weight = 70
         height = 170
 
-    if not longitude_1 or not latitude_1 or not longitude_2 or not latitude_2:
-        return (jsonify({"message": "Missing Coords"}), 400,)
-    
     coord_tuple = ((coord.longitude_1, coord.latitude_1), (coord.longitude_2, coord.latitude_2), (weight, height))
     #GET PATH WITH COOL FUNCTION
     new_path = "HTML COOL PATH"

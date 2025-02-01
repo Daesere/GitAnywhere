@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import UserList from './UserList'
 import './App.css'
 import UserForm from './UserForm'
+import CoordForm from './CoordForm'
 
 function App() {
   const [users, setUsers] = useState([])
@@ -46,6 +47,12 @@ function App() {
         </div>
     </div>
     }
+    <div>
+      <br />
+      {
+        <CoordForm updateCallback={ onUpdate } />
+      }
+    </div>
     
   </>
     

@@ -5,7 +5,7 @@ import UserForm from './UserForm'
 import CoordForm from './CoordForm'
 import CoordNuke from './CoordNuke'
 import Notebook from "./Flipbook";
-
+import Maps from './maps'
 
 function App() {
   const [users, setUsers] = useState([])
@@ -58,10 +58,12 @@ function App() {
     </div>
     <br />
     <br />
-    <div className="App">
+      <div className="App">
       <Notebook />
     </div>
+
     <br />
+        <Maps />
     <div>
       <CoordNuke />
     </div>

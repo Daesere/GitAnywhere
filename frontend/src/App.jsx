@@ -4,6 +4,7 @@ import './App.css'
 import UserForm from './UserForm'
 import CoordForm from './CoordForm'
 import CoordNuke from './CoordNuke'
+import Maps from './maps'
 
 function App() {
   const [users, setUsers] = useState([])
@@ -56,6 +57,7 @@ function App() {
     </div>
     <br />
     <br />
+    <Maps />
     <br />
     <div>
       <CoordNuke />

@@ -2,6 +2,7 @@ import ee
 from geemap import Map as geemap
 import math
 import numpy as np
+import os
 
 ee.Authenticate()
 print('Authenticated')
@@ -87,13 +88,19 @@ def get_points(start_c, end_c):
 
 points = get_points(start_c, end_c)
 
-test_route = ee.Geometry.LineString([start_c, end_c])
+def create_map(points):
+    test_route = ee.Geometry.LineString([start_c, end_c])
 
-route_map = geemap(centger=[(start_c[0] + end_c[0])/2, (start_c[1] + end_c[1])/2], zoom=14)
+    route_map = geemap(centger=[(start_c[0] + end_c[0])/2, (start_c[1] + end_c[1])/2], zoom=14)
 
-route_map.addLayer(test_route, {"color": "blue"}, "Route")
+    route_map.addLayer(test_route, {"color": "blue"}, "Route")
 
-output_file = 'route_map.html'
-route_map.save(outfile=output_file)
+    if not os.path.exists('maps'):
+        os.makedirs('maps')
 
-print(f'route map save to {output_file}')
+    output_file = os.path.join('maps', 'route_map.html')
+    route_map.save(outfile=output_file)
+
+    print(f'route map save to {output_file}')
+
+create_map(points)

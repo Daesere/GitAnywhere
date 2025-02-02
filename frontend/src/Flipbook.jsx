@@ -13,10 +13,8 @@ const Page = React.forwardRef((props, ref) => {
         <h2 className="page-header">
           {props.number === 1 && "PERSONAL INFO"}
           {props.number === 2 && "TRIP INFORMATION"}
-          {props.number === 3 && "WEATHER"}
-          {props.number === 4 && "WRAPPER"}
-          {props.number === 5 && "CREDITS"}
-          {props.number === 6 && ""}
+          {props.number === 3 && "CREDITS"}
+          {props.number === 4 && ""}
           </h2>
         <div className="page-text">{props.children}</div>
         <div
@@ -80,10 +78,19 @@ const Notebook = () => {
          
         </Page>
         <Page number={2}> <CoordForm></CoordForm></Page>
-        <Page number={3}>You can write anything you want on this page.</Page>
-        <Page number={4}>Notebooks are great for organizing thoughts.</Page>
-        <Page number={5}>Keep adding pages as needed!</Page>
-        <Page number={6}></Page>
+        <Page number={3}><u>Thomas Lewis</u>
+                            <br></br>&nbsp;&nbsp;&nbsp;&nbsp;Role: Pathfinding software and integration
+                            <br></br>
+                          <u>Julien Yang</u>
+                            <br></br>&nbsp;&nbsp;&nbsp;&nbsp;Role: API 
+                            <br></br>
+                          <u>Teo Coughlan</u>
+                            <br></br>&nbsp;&nbsp;&nbsp;&nbsp;Role: Interactive UI
+                            <br></br>
+                          <u>Maxime Gregoire</u>
+                            <br></br>&nbsp;&nbsp;&nbsp;&nbsp;Role: Google Map integration
+                            <br></br>
+</Page>
       </HTMLFlipBook>
 
      {/* Navigation Buttons */}

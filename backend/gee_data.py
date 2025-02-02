@@ -108,5 +108,6 @@ def create_map(start_c, end_c, bodyweight=70, height=1.70):
     route_map.save(outfile=output_file)
 
     print(f'route map save to {output_file}')
+    return coord_path
 
 #create_map(start_c, end_c)

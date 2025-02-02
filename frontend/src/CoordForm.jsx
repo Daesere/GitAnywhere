@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import './App.css';
+
 
 const CoordForm = ({ updateCallback }) => {
     const [latitude_1, setLatitude_1] = useState("");
     const [longitude_1, setLongitude_1] = useState("");
     const [latitude_2, setLatitude_2] = useState("");
     const [longitude_2, setLongitude_2] = useState("");
+    const [isLocationConfirmed, setIsLocationConfirmed] = useState(false)
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -74,8 +77,14 @@ const CoordForm = ({ updateCallback }) => {
             />
         </div>
         <button 
+        onClick={() => setIsLocationConfirmed(true)}
+
         className="control-button"
-        type="submit">Add Locations</button>
+        type="submit">Add Locations
+        
+        </button>
+
+        {isLocationConfirmed && (<button className="confirm-box">Confirm Location</button>)}
     </form>
 }
 

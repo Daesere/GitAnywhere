@@ -10,7 +10,7 @@
     
 }
 
-.control-button{
+.control-button, .confirm-box{
     background-color:rgb(178, 110, 0);
     font-family: "Chango", serif;
     font-weight: 400;

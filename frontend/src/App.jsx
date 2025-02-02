@@ -58,21 +58,6 @@ function App() {
   }
   
   return <>
-    <UserList users={users} updateUser={openEditModal} updateCallback={ onUpdate } />
-    <button onClick={openCreateModal}>Create New User</button>
-    {isModalOpen && <div className="modal">
-      <div classname="modal-content">
-        <span classname="close" onClick={closeModal}>&times;</span>
-        <UserForm existingUser={currentUser} updateCallback={ onUpdate } />
-        </div>
-    </div>
-    }
-    <div>
-      <br />
-      {
-        <CoordForm updateCallback={ onUpdate } />
-      }
-    </div>
     <br />
     <br />
     <div className="App">

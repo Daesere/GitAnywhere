@@ -69,6 +69,7 @@
   font-weight: bold;
   text-align:right;
   padding-right:15px;
+  right:180px;
 }
 
 .page-footer-left{
@@ -78,7 +79,7 @@
   margin-bottom:2px;
   font-weight: bold;
   text-align:left;
-  padding-left:15px;
+  left:195px;
 }
 
 
@@ -95,26 +96,36 @@
 .controls-right {
   position: absolute;
   right: 250px;
-  bottom:10px;
+  bottom:30px;
   text-align: center;
   z-index:2;
-  background-color:rgb(46, 145, 0);
 }
 
 .controls-left {
   position: absolute;
-  bottom: 10px;
+  bottom: 30px;
   left: 250px;
   text-align: center;
   z-index:2;
-  background-color:rgb(46, 145, 0);
 }
-  
-.controls button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  font-size: 1rem;
+
+.controls-right button{
+  background-image: url("./images/forward-arrow.png");
+}
+.controls-left button{
+  background-image: url("./images/backward-arrow.png");
+}
+.controls-right button, .controls-left button {
+  height:60px;
+  background-repeat: no-repeat;
+  width:60px;
+  background-size:cover;
   cursor: pointer;
-  color: white;
-  background-color:rgb(0, 86, 4);
+  z-index: 2;
+  background-color:rgba(0, 0, 0, 0);
+  border-color:rgba(255, 0, 0, 0)
+}
+
+.controls-right button span, .controls-left button span {
+  display: none;
 }

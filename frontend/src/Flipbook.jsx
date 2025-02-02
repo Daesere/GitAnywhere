@@ -80,10 +80,10 @@ const Notebook = () => {
 
      {/* Navigation Buttons */}
      <div className="controls-left">
-        <button onClick={handlePrevPage}>Prev</button>
+        <button onClick={handlePrevPage}></button>
       </div> 
       <div className="controls-right">
-        <button onClick={handleNextPage}>Next</button>
+        <button onClick={handleNextPage}></button>
       </div>
     </div>
   );

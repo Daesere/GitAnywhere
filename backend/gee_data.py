@@ -109,4 +109,4 @@ def create_map(start_c, end_c, bodyweight=70, height=1.70):
 
     print(f'route map save to {output_file}')
 
-create_map(start_c, end_c)
+#create_map(start_c, end_c)

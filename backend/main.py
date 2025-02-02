@@ -2,7 +2,7 @@
 from flask import request, jsonify
 from config import app, db
 from models import User, Coordinates, Path
-from gee_data import create_map
+#import gee_data
 ## USER LIST
 # READ
 @app.route("/users", methods=['GET'])
@@ -127,16 +127,16 @@ def create_path(coord_id):
 
     coord_tuple = ((coord.longitude_1, coord.latitude_1), (coord.longitude_2, coord.latitude_2), weight, height)
     #GET PATH WITH COOL FUNCTION
-    create_map(coord_tuple)
-    new_path = "route_map.html"
+    #gee_data.create_map(coord_tuple)
+    #new_path = "route_map.html"
     
-    try:
-        db.session.add(new_path)
-        db.session.commit()
-    except Exception as e:
-        return jsonify({"message": str(e)}), 400
+    # try:
+    #     db.session.add(new_path)
+    #     db.session.commit()
+    # except Exception as e:
+    #     return jsonify({"message": str(e)}), 400
     
-    return jsonify({"message": "Path created!!"}), 201
+    # return jsonify({"message": "Path created!!"}), 201
     
 if __name__ == '__main__':
     with app.app_context():

@@ -4,6 +4,8 @@ import './App.css'
 import UserForm from './UserForm'
 import CoordForm from './CoordForm'
 import CoordNuke from './CoordNuke'
+import UserNuke from './UserNuke'
+import PathNuke from './PathNuke'
 import Notebook from "./Flipbook";
 import Maps from "./maps";
 
@@ -58,6 +60,10 @@ function App() {
     closeModal()
     fetchUsers()
   }
+
+  const refreshMap = () => {
+    // DO SOMETHING HERE TO REFRESH MAP
+  }
   
   return <>
     <br />
@@ -79,6 +85,12 @@ function App() {
       <CoordNuke />
     </div>
 
+    <div>
+      <UserNuke />
+    </div>
+    <div>
+      <PathNuke />
+</div>
     
 
   </>

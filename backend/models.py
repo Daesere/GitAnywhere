@@ -33,7 +33,7 @@ class Coordinates(db.Model):
     
 class Path(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    html_path = db.Column(db.String(100), nullable=False)
+    html_path = db.Column(db.String(), nullable=False)
     def to_json(self):
         return {
             'id': self.id,

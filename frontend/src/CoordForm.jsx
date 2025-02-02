@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './App.css';
 
 
-const CoordForm = ({ updateCallback }) => {
+const CoordForm = ({ updateCallback, refreshMap }) => {
     const [latitude_1, setLatitude_1] = useState("");
     const [longitude_1, setLongitude_1] = useState("");
     const [latitude_2, setLatitude_2] = useState("");
@@ -34,6 +34,26 @@ const CoordForm = ({ updateCallback }) => {
             updateCallback()
         }
     }
+
+
+const onConfirm = async (e) => {
+    e.preventDefault()
+
+    const url = "http://127.0.0.1:5000/create_path"
+    const options = {
+        method: "POST",
+        headers: {
+            'Content-Type': "application/json"
+        }
+    }
+    const response = await fetch(url, options)
+    if (response.status !== 201 && response.status !== 200) {
+        const data = await response.json()
+        alert(data.message)
+    } else {
+        refreshMap()
+    }
+}
     return <form onSubmit={onSubmit}>
         <div>
             <label htmlFor="latitude_1"><u>Starting Position</u><br></br>&nbsp;&nbsp;&nbsp;&nbsp;Latitude   :</label>
@@ -76,15 +96,15 @@ const CoordForm = ({ updateCallback }) => {
                 onChange={(e) => setLongitude_2(e.target.value)}
             />
         </div>
-        <button 
-        onClick={() => setIsLocationConfirmed(true)}
+        <button
+            onClick={() => setIsLocationConfirmed(true)}
 
-        className="control-button"
-        type="submit">Add Locations
+            className="control-button"
+            type="submit">Add Locations
         
         </button>
 
-        {isLocationConfirmed && (<button className="confirm-box">Confirm Location</button>)}
+        {isLocationConfirmed && (<button className="confirm-box" onClick={onConfirm}>Confirm Location</button>)}
     </form>
 }
 

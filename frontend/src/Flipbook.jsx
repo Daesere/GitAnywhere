@@ -62,8 +62,8 @@ const Notebook = () => {
 
      {/* Navigation Buttons */}
      <div className="controls">
-        <button onClick={handlePrevPage}>Previous Page</button>
-        <button onClick={handleNextPage}>Next Page</button>
+        <button onClick={handlePrevPage}>Prev</button>
+        <button onClick={handleNextPage}>Next</button>
       </div> 
     </div>
   );

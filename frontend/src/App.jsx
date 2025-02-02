@@ -5,12 +5,15 @@ import UserForm from './UserForm'
 import CoordForm from './CoordForm'
 import CoordNuke from './CoordNuke'
 import Notebook from "./Flipbook";
-import Maps from './maps'
+import Maps from "./maps";
+
 
 function App() {
   const [users, setUsers] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [currentUser, setCurrentUser] = useState([])
+  const [isBookOpen, setIsBookOpen] = useState(false)
+
   useEffect(() => {
     fetchUsers()
   }, [])
@@ -26,6 +29,19 @@ function App() {
     setCurrentUser({})
   }
 
+  const closeBook = () => {
+    setIsBookOpen(false)
+  }
+
+  const openBook = () => {
+    if (!isBookOpen) setIsBookOpen(true)
+  }
+
+  const toggleBook = () => {
+    setIsBookOpen(!isBookOpen)
+  }
+
+
   const openCreateModal = () => { 
     if (!isModalOpen) setIsModalOpen(true)
   }
@@ -40,6 +56,7 @@ function App() {
     closeModal()
     fetchUsers()
   }
+  
   return <>
     <UserList users={users} updateUser={openEditModal} updateCallback={ onUpdate } />
     <button onClick={openCreateModal}>Create New User</button>
@@ -58,15 +75,25 @@ function App() {
     </div>
     <br />
     <br />
-      <div className="App">
-      <Notebook />
+    <div className="App">
     </div>
 
+    <div className="App">
+    {isBookOpen && <Notebook />}
+      <button onClick={toggleBook}>
+        {isBookOpen ? 'Hide Notebook' : 'Show Notebook'}
+      </button>
+      
+    </div>
     <br />
-        <Maps />
+
+    <Maps />
+
     <div>
       <CoordNuke />
     </div>
+
+    
 
   </>
     

@@ -34,7 +34,8 @@ const UserForm = ({ existingUser = {}, updateCallback }) => {
     return <form onSubmit={onSubmit}>
         <div>
             <label htmlFor="firstName">&nbsp;&nbsp;&nbsp;&nbsp;First Name:  </label>
-            <input className="controls-right button"
+            <input 
+                className="input-box"
                 type="text"
                 id="firstName"
                 value={firstName}
@@ -44,6 +45,7 @@ const UserForm = ({ existingUser = {}, updateCallback }) => {
         <div>
             <label htmlFor="weight">&nbsp;&nbsp;&nbsp;&nbsp;Weight: </label>
             <input
+                className="input-box"
                 type="text"
                 id="weight"
                 value={weight}
@@ -53,13 +55,16 @@ const UserForm = ({ existingUser = {}, updateCallback }) => {
         <div>
             <label htmlFor="height">&nbsp;&nbsp;&nbsp;&nbsp;Height: </label>
             <input
+                className="input-box"
                 type="text"
                 id="height"
                 value={height}
                 onChange={(e) => setHeight(e.target.value)}
             />
         </div>
-        <button type="submit">{updating ? "Update" : "Create"}</button>
+        <button 
+        className="control-button"
+        type="submit">{updating ? "Update" : "Add Camper"}</button>
     </form>
 }
 

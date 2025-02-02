@@ -35,6 +35,7 @@ const CoordForm = ({ updateCallback }) => {
         <div>
             <label htmlFor="latitude_1"><u>Starting Position</u><br></br>&nbsp;&nbsp;&nbsp;&nbsp;Latitude   :</label>
             <input
+                className="input-box"
                 type="text"
                 id="latitude_1"
                 value={latitude_1}
@@ -44,6 +45,7 @@ const CoordForm = ({ updateCallback }) => {
         <div>
             <label htmlFor="longitude_1">&nbsp;&nbsp;&nbsp;&nbsp;Longitude  :</label>
             <input
+                className="input-box"
                 type="text"
                 id="longitude_1"
                 value={longitude_1}
@@ -54,6 +56,7 @@ const CoordForm = ({ updateCallback }) => {
         <div>
             <label htmlFor="latitude_2"><u>Destination</u><br></br>&nbsp;&nbsp;&nbsp;&nbsp;Latitude :</label>
             <input
+                className="input-box"
                 type="text"
                 id="latitude_2"
                 value={latitude_2}
@@ -63,13 +66,16 @@ const CoordForm = ({ updateCallback }) => {
         <div>
             <label htmlFor="longitude_2">&nbsp;&nbsp;&nbsp;&nbsp;Longitude :</label>
             <input
+                className="input-box"
                 type="text"
                 id="longitude_2"
                 value={longitude_2}
                 onChange={(e) => setLongitude_2(e.target.value)}
             />
         </div>
-        <button type="submit">Create</button>
+        <button 
+        className="control-button"
+        type="submit">Add Locations</button>
     </form>
 }
 

@@ -26,7 +26,7 @@ def find_path(points, scale, bodyweight, height):
         terrain = move_features[1]
         terrain_cost = terrain * 0.01 + 1
         gradient = (move_features[0] - curr_features[0])/scale
-        speed = (1/6 * math.exp(3.5 * (gradient + 0.5))) * terrain_cost/5 - bmi/20 * 0.1
+        speed = (8 * math.exp(-1.5 * (gradient + 0.5)))/terrain_cost - bmi/2000
         cost = scale/speed
         return cost
     

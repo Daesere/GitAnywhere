@@ -124,10 +124,10 @@ def create_map(start_c, end_c, bodyweight=70, height=1.70):
 
     route_map.addLayer(route, {"color": "blue"}, "Route")
 
-    if not os.path.exists('../frontend/public'):
-        os.makedirs('public')
+    if not os.path.exists('/frontend/public'):
+        os.makedirs('/frontend/public')
 
-    output_file = os.path.join('../frontend/public', 'route_map.html')
+    output_file = os.path.join('/frontend/public', 'route_map.html')
     route_map.save(outfile=output_file)
 
     print(f'route map save to {output_file}')

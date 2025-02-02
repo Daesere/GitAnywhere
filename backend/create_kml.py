@@ -7,8 +7,8 @@ def generateKmlFile(points): # points is a list of tuples
     kml.save("path.kml")
     return "path.kml"
 
-def addToGit():
-    GITHUB_TOKEN = "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"  #GitHub PAT
+def addToGit(token):
+    GITHUB_TOKEN = token  #GitHub PAT
     REPO_NAME = "magrey0/map"   #repository name
     FILE_PATH = "file_path"          #path to local file
     UPLOAD_PATH = "path.kml"  #path in the repository

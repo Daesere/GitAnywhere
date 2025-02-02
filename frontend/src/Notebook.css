@@ -47,24 +47,64 @@
   background-size: cover;
 }
 
-.page-content {
-  font-family: "Pacifico", cursive;
+
+.page-header {
+  font-family: "Chango", serif;
   font-weight: 400;
-  font-style: normal;  text-align: center;
+  color:white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-style: normal;
+  margin-top:15px;
+  font-weight: bold;
+  text-align:left;
+  margin-left:15px;
 }
 
-.page-header, .page-footer {
+.page-footer-right {
+  position: absolute;
+  bottom:10px;
+  right:0px;
   font-size: 18px;
+  margin-bottom:2px;
   font-weight: bold;
+  text-align:right;
+  padding-right:15px;
 }
+
+.page-footer-left{
+  position: absolute;
+  bottom:10px;
+  font-size: 18px;
+  margin-bottom:2px;
+  font-weight: bold;
+  text-align:left;
+  padding-left:15px;
+}
+
 
 .page-text {
-  font-size: 16px;
-  margin-top: 10px;
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal; 
+  text-align: center;
+  text-align: left;
+  margin-left:20px;
+  line-height:35px;
+
 }
-.controls {
+.controls-right {
   position: absolute;
-  top: 10px;
+  right: 250px;
+  bottom:10px;
+  text-align: center;
+  z-index:2;
+  background-color:rgb(46, 145, 0);
+}
+
+.controls-left {
+  position: absolute;
+  bottom: 10px;
+  left: 250px;
   text-align: center;
   z-index:2;
   background-color:rgb(46, 145, 0);

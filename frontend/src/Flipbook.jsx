@@ -7,9 +7,22 @@ const Page = React.forwardRef((props, ref) => {
   return (
     <div className="page" ref={ref}>
       <div className="page-content">
-        <h2 className="page-header">Page {props.number}</h2>
+        <h2 className="page-header">
+          {props.number === 1 && "PERSONAL INFO"}
+          {props.number === 2 && "TRIP INFORMATION"}
+          {props.number === 3 && "WEATHER"}
+          {props.number === 4 && "WRAPPER"}
+          {props.number === 5 && "CREDITS"}
+          {props.number === 6 && ""}
+          </h2>
         <div className="page-text">{props.children}</div>
-        <div className="page-footer">{props.number}</div>
+        <div
+          className={
+            props.number % 2 === 0 ? "page-footer-right" : "page-footer-left"
+          }
+       >
+          {props.number}
+        </div>
       </div>
     </div>
   );
@@ -52,19 +65,26 @@ const Notebook = () => {
         className="notebook"
       >
         {/* Only Pages */}
-        <Page number={1}>This is the first page of my notebook.</Page>
+        <Page number={1}>
+          <u>Information </u><br></br>
+          &nbsp;&nbsp;&nbsp;&nbsp;First Name: <br></br>
+          &nbsp;&nbsp;&nbsp;&nbsp;Weight: <br></br>
+          &nbsp;&nbsp;&nbsp;&nbsp;Height: <br></br>
+        </Page>
         <Page number={2}>This is the second page. Add more content here!</Page>
         <Page number={3}>You can write anything you want on this page.</Page>
         <Page number={4}>Notebooks are great for organizing thoughts.</Page>
         <Page number={5}>Keep adding pages as needed!</Page>
-        <Page number={6}>Keep adding pages as needed!</Page>
+        <Page number={6}></Page>
       </HTMLFlipBook>
 
      {/* Navigation Buttons */}
-     <div className="controls">
+     <div className="controls-left">
         <button onClick={handlePrevPage}>Prev</button>
-        <button onClick={handleNextPage}>Next</button>
       </div> 
+      <div className="controls-right">
+        <button onClick={handleNextPage}>Next</button>
+      </div>
     </div>
   );
 };

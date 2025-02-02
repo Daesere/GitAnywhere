@@ -1,6 +1,9 @@
 import React from "react";
 import HTMLFlipBook from "react-pageflip";
 import "./Notebook.css";
+import UserForm from "./UserForm.jsx";
+import UserList from "./UserList.jsx"
+import CoordForm from "./CoordForm.jsx";
 
 // Page Component
 const Page = React.forwardRef((props, ref) => {
@@ -28,6 +31,12 @@ const Page = React.forwardRef((props, ref) => {
   );
 });
 
+const hideArrow = () => {
+  if (props.number === 1)
+    <div className="left-arrow-hidden"></div>
+  if (props.number === 6)
+    <div className="right-arrow-hidden"></div>
+}
 // Notebook Component
 const Notebook = () => {
   const flipBookRef = React.useRef(null);
@@ -67,11 +76,10 @@ const Notebook = () => {
         {/* Only Pages */}
         <Page number={1}>
           <u>Information </u><br></br>
-          &nbsp;&nbsp;&nbsp;&nbsp;First Name: <br></br>
-          &nbsp;&nbsp;&nbsp;&nbsp;Weight: <br></br>
-          &nbsp;&nbsp;&nbsp;&nbsp;Height: <br></br>
+          <UserForm></UserForm> <br></br>
+         
         </Page>
-        <Page number={2}>This is the second page. Add more content here!</Page>
+        <Page number={2}> <CoordForm></CoordForm></Page>
         <Page number={3}>You can write anything you want on this page.</Page>
         <Page number={4}>Notebooks are great for organizing thoughts.</Page>
         <Page number={5}>Keep adding pages as needed!</Page>

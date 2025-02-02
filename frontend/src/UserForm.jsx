@@ -33,8 +33,8 @@ const UserForm = ({ existingUser = {}, updateCallback }) => {
     }
     return <form onSubmit={onSubmit}>
         <div>
-            <label htmlFor="firstName">First Name:</label>
-            <input
+            <label htmlFor="firstName">&nbsp;&nbsp;&nbsp;&nbsp;First Name:  </label>
+            <input className="controls-right button"
                 type="text"
                 id="firstName"
                 value={firstName}
@@ -42,7 +42,7 @@ const UserForm = ({ existingUser = {}, updateCallback }) => {
             />
         </div>
         <div>
-            <label htmlFor="weight">Weight:</label>
+            <label htmlFor="weight">&nbsp;&nbsp;&nbsp;&nbsp;Weight: </label>
             <input
                 type="text"
                 id="weight"
@@ -51,7 +51,7 @@ const UserForm = ({ existingUser = {}, updateCallback }) => {
             />
         </div>
         <div>
-            <label htmlFor="height">Height:</label>
+            <label htmlFor="height">&nbsp;&nbsp;&nbsp;&nbsp;Height: </label>
             <input
                 type="text"
                 id="height"

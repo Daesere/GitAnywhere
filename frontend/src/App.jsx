@@ -4,7 +4,6 @@ import './App.css'
 import UserForm from './UserForm'
 import CoordForm from './CoordForm'
 import CoordNuke from './CoordNuke'
-import UserNuke from './UserNuke'
 import Notebook from "./Flipbook";
 import Maps from "./maps";
 
@@ -43,6 +42,8 @@ function App() {
   }
 
 
+
+
   const openCreateModal = () => { 
     if (!isModalOpen) setIsModalOpen(true)
   }
@@ -66,10 +67,9 @@ function App() {
 
     <div className="App">
     {isBookOpen && <Notebook />}
-      <button onClick={toggleBook}>
-        {isBookOpen ? 'Hide Notebook' : 'Show Notebook'}
+      <button onClick={toggleBook}
+        className="book-box">
       </button>
-      
     </div>
     <br />
 
@@ -77,9 +77,6 @@ function App() {
 
     <div>
       <CoordNuke />
-    </div>
-    <div>
-      <UserNuke />
     </div>
 
     

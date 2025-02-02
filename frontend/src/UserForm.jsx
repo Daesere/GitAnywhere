@@ -34,7 +34,7 @@ const UserForm = ({ existingUser = {}, updateCallback }) => {
     return <form onSubmit={onSubmit}>
         <div>
             <label htmlFor="firstName">&nbsp;&nbsp;&nbsp;&nbsp;First Name:  </label>
-            <input className="controls-right button"
+            <input
                 type="text"
                 id="firstName"
                 value={firstName}

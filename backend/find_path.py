@@ -10,40 +10,40 @@ def to_elevation_grid(points):
         grid[-1].append(point[1])
 
     return grid
-
     
 def find_path(points, scale, bodyweight, height):
     elevation_grid = to_elevation_grid(points)
     pending_list = [[[0,0],0]]
-    base = len(elevation_grid)
-    # print(len(elevation_grid[0]), len(elevation_grid), scale)
-
+    base_x, base_y = len(elevation_grid[0]), len(elevation_grid)
     grid = []
-    for i in range(base):
+    for i in range(base_y):
         grid.append([])
-        for j in range(base):
+        for j in range(base_x):
             grid[-1].append(0)
 
     bmi = bodyweight/(height ** 2)
     def cost_func(curr_features, move_features):
+        terrain = move_features[1]
+        terrain_cost = terrain * 0.01 + 1
         gradient = (move_features[0] - curr_features[0])/scale
-        pace = 0.6 * math.exp(gradient + 0.5) * bmi/20
-        cost = pace * scale/1000
+        speed = (1/6 * math.exp(3.5 * (gradient + 0.5))) * terrain_cost/5 - bmi/20 * 0.1
+        cost = scale/speed
         return cost
     
     def find_moves(curr, pending_list):
         moves = []
         x, y = curr[0][0], curr[0][1]
+        
         curr_cost = curr[1]
         curr_features = elevation_grid[x][y]
 
         if x - 1 >= 0 and grid[y][x - 1] == 0:
             moves.append([[x - 1, y], curr_cost + cost_func(curr_features, elevation_grid[y][x - 1])])
-        if x + 1 != base and grid[y][x + 1] == 0:
+        if x + 1 < base_x and grid[y][x + 1] == 0:
             moves.append([[x + 1, y], curr_cost + cost_func(curr_features, elevation_grid[y][x + 1])])
         if y - 1 >= 0 and grid[y - 1][x] == 0:
             moves.append([[x, y - 1], curr_cost + cost_func(curr_features, elevation_grid[y - 1][x])])
-        if y + 1 != base and grid[y + 1][x] == 0:
+        if y + 1 < base_y and grid[y + 1][x] == 0:
             moves.append([[x, y + 1], curr_cost + cost_func(curr_features, elevation_grid[y + 1][x])])
         
         moves.sort(key=lambda x: x[1])
@@ -82,7 +82,7 @@ def find_path(points, scale, bodyweight, height):
     while True:
         end = pending_list[0]
 
-        if end[0] == [base - 1, base - 1]:
+        if end[0] == [base_x - 1, base_y - 1]:
             curr = end[0]
             path = []
             while curr != [0,0]:
@@ -91,6 +91,8 @@ def find_path(points, scale, bodyweight, height):
                 
             path.append(curr)
             return path, end[1]
-
-        find_moves(end, pending_list)
+        try:
+            find_moves(end, pending_list)
+        except:
+            pending_list = pending_list[1:]
                     

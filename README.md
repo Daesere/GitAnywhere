@@ -28,8 +28,6 @@ npm install react
 npm install react-page-flip
 
 Make sure libraries in requirements.txt are downloaded. (pip install package_name)
-
-
  
 ---
 ## Challenges and Learnings

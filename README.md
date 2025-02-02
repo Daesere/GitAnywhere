@@ -14,7 +14,7 @@ Tired of looking for the perfect off-trail to hike through some nature? **Git An
 ## Features
 - Use Git Anywhere to generate an off-trail passage anywhere on the globe!
 - A simple, intuitive UI makes it easy for campers to explore where their hearts guide them, without restriction!
-- 
+
 ---
 ## Installation
 1. Clone the repositery
@@ -25,7 +25,9 @@ Tired of looking for the perfect off-trail to hike through some nature? **Git An
 2. Install dependencies
 (bash)
 npm install react
-npm install  react-page-flip
+npm install react-page-flip
+
+Make sure libraries in requirements.txt are downloaded. (pip install package_name)
 
 
  
@@ -34,11 +36,11 @@ npm install  react-page-flip
 1. Challenges
 - Ensuring the UI stays simple and versatile
 - Use the google maps API and apply the points on the map
-- 
+- Connecting backend logic with frontend integration
 
 2. Key Lesson Learned
 - **Don't dream to high!** Focus on submitting something that works and then look for adding more capabilities
-- 
+- **Stay organised!** It's easy to get lost when adding new features... An organised workplace is the key to success
 ---
 ## Future plans
 We are continuously working to improve **Git Anywhere**! Here are some upcoming features and enhancements:
@@ -59,7 +61,7 @@ Integration
 - **Teo Coughlan**
 UI and interface
 - **Maxime Gregoire**
-
+Map integration
 ---
 
 ## Acknowledgments

@@ -1,8 +1,9 @@
  # CREATE READ UPDATE DELETE - CRUD
 from flask import request, jsonify
 from config import app, db
-from models import User, Coordinates, Path
+from models import User, Coordinates, Path, Map
 from gee_data import create_map
+import create_kml
 ## USER LIST
 # READ
 @app.route("/users", methods=['GET'])
@@ -147,6 +148,42 @@ def delete_path():
     db.session.commit()
 
     return jsonify({"message": "Paths deleted"}), 200
+
+#### MAPS
+#READ
+@app.route("/maps", methods=['GET'])
+def get_maps():
+    maps = Map.query.all()
+    if not maps:
+        return jsonify({"message": "No maps found"})
+    return jsonify({"maps": [map.to_json() for map in maps]})
+
+##CREATE
+@app.route("/create_map", methods=['POST'])
+def create_map():
+    path = Path.query.first()
+    if not path:
+        return jsonify({"message": "Path not found"}), 404
+    
+    #GENERATE URL
+    url = "URL"
+    new_map = Map(map_url= url)
+    try:
+        db.session.add(new_map)
+        db.session.commit()
+    except Exception as e:
+        return jsonify({"message": str(e)}), 400
+    
+    return jsonify({"message": "Map created!"}), 201
+
+# DELETE
+@app.route("/delete_map", methods=["DELETE"])
+def delete_map():
+    
+    Map.query.delete()
+    db.session.commit()
+
+    return jsonify({"message": "Maps deleted"}), 200
 
 if __name__ == '__main__':
     with app.app_context():

@@ -15,6 +15,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [currentUser, setCurrentUser] = useState([])
   const [isBookOpen, setIsBookOpen] = useState(false)
+  const [map, setMap] = useState([])
 
   useEffect(() => {
     fetchUsers()
@@ -24,6 +25,12 @@ function App() {
     const response = await fetch('http://127.0.0.1:5000/users');
     const data = await response.json();
     setUsers(data.users);
+  }
+  
+  const fetchMap = async () => {
+    const response = await fetch('http://127.0.0.1:5000/maps');
+    const data = await response.json();
+    setMap(data.map);
   }
 
   const closeModal = () => {
@@ -57,10 +64,12 @@ function App() {
   const onUpdate = () => {
     closeModal()
     fetchUsers()
+    
   }
 
   const refreshMap = () => {
     // DO SOMETHING HERE TO REFRESH MAP
+    fetchMap()
   }
   
   return <>

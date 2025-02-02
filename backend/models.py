@@ -39,3 +39,12 @@ class Path(db.Model):
             'id': self.id,
             'htmlPath': self.html_path
         }
+    
+class Map(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    map_url = db.Column(db.String(), nullable=False)
+    def to_json(self):
+        return {
+            'id': self.id,
+            'mapUrl': self.map_url
+        }

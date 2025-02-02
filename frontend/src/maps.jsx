@@ -11,24 +11,28 @@ const center = {
   lng: -38.523,
 }
 
-function Maps() {
+
+function Maps({map_url, update}) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyBZc-TWI9acnxpjYfP9WnDbTRTKStQvvBA',
   })
 
   const [map, setMap] = React.useState(null)
+  
 
   const onLoad = React.useCallback(function callback(map) {
 //    const bounds = new window.google.maps.LatLngBounds(center)
 //    map.fitBounds(bounds)
 
+     
     setMap(map)
 
     const kmlLayer = new window.google.maps.KmlLayer({
-      url: 'https://raw.githubusercontent.com/magrey0/map/main/path.kml',
+      url: map_url,
       map: map,
     });
+    update()
 
   }, [])
 

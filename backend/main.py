@@ -153,7 +153,7 @@ def delete_path():
 #READ
 @app.route("/maps", methods=['GET'])
 def get_maps():
-    maps = Map.query.all()
+    maps = Map.query.first()
     if not maps:
         return jsonify({"message": "No maps found"})
     return jsonify({"maps": [map.to_json() for map in maps]})

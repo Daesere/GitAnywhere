@@ -87,7 +87,7 @@ function App() {
     </div>
     <br />
 
-    <Maps />
+    <Maps map={map} update={refreshMap} />
 
     <div>
       <CoordNuke />

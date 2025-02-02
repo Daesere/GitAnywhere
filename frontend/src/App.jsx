@@ -10,12 +10,13 @@ import Notebook from "./Flipbook";
 import Maps from "./maps";
 
 
+
 function App() {
   const [users, setUsers] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [currentUser, setCurrentUser] = useState([])
   const [isBookOpen, setIsBookOpen] = useState(false)
-
+  const [seed, setSeed] = useState(1);
   useEffect(() => {
     fetchUsers()
   }, [])
@@ -43,7 +44,10 @@ function App() {
     setIsBookOpen(!isBookOpen)
   }
 
-
+  
+  const reset = () => {
+        setSeed(Math.random());
+    }
 
 
   const openCreateModal = () => { 
@@ -75,7 +79,16 @@ function App() {
     
     <br />
 
-    <Maps />
+    <div className="MapComponent">
+      <iframe 
+          key={seed}
+          src="/route_map.html" // Ensure the file is inside the public folder
+          width="100%"
+          height="600px"
+          frameBorder="0"
+          title="Route Map"
+        ></iframe>
+      </div>
 
     <div className="App">
     {isBookOpen && (
@@ -106,6 +119,9 @@ function App() {
     <div>
       <CoordNuke />
     </div>
+    <button onClick={reset} 
+      style={{ zIndex: 10, }}>Reset
+    </button>
 
     <div>
       <UserNuke />

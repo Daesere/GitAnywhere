@@ -24,7 +24,7 @@
   width: 840px; /* Match the flipbook width */
   height: 540px; /* Match the flipbook height */
   background-color: #64431a; /* Cover background color */
-  z-index: -1; /* Place it behind the flipbook */
+  z-index: 1; /* Place it behind the flipbook */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
 }
 
@@ -96,16 +96,16 @@
 }
 .controls-right {
   position: absolute;
-  right: 250px;
-  bottom:30px;
+  right: 20%;
+  bottom:5%;
   text-align: center;
   z-index:2;
 }
 
 .controls-left {
   position: absolute;
-  bottom: 30px;
-  left: 250px;
+  bottom: 5%;
+  left: 20%;
   text-align: center;
   z-index:2;
 }
@@ -128,9 +128,5 @@
 }
 
 .controls-right button span, .controls-left button span {
-  display: none;
-}
-
-.left-arrow-hidden{
   display: none;
 }

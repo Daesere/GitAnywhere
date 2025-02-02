@@ -10,7 +10,7 @@
     
 }
 
-.control-button, .confirm-box{
+.control-button, .control-box{
     background-color:rgb(178, 110, 0);
     font-family: "Chango", serif;
     font-weight: 400;
@@ -22,4 +22,15 @@
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 
     
+}
+
+.book-box{
+    background-image: url(./images/book-icon.png);
+    background-size:cover;
+    background-color:rgba(0, 0, 0, 0);
+    width:100px;
+    height:75px;
+    background-repeat:no-repeat;
+    background-image:center;
+    z-index: index 6;;
 }

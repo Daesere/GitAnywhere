@@ -14,14 +14,10 @@ print('Initialized')
 # end_c = (float(input('lat end: ')), float(input('lon end: ')))
 # bodyweight = float(input('wight in kg: '))
 # height = float(input('height in m: '))
-start_c = (46.2, 8)
-end_c = (46.25, 8.05)
+start_c = (48.2, 10)
+end_c = (48.25, 10.05)
 bodyweight = 65
 height = 1.70
-
-
-# Get elevation
-elevation = ee.Image('USGS/SRTMGL1_003')
 
 # Convert to meters (zeroed)
 def coords_to_m(start_c, end_c):
@@ -55,14 +51,31 @@ def get_scale(start_m, end_m):
     return 30
 
 def get_points(start_c, end_c, scale):
-
+    # Define the area of interest
     aoi = ee.Geometry.Rectangle([start_c, end_c])
-    point_samples = elevation.sample(region=aoi, scale=scale, geometries=True)
 
-    samples_list = point_samples.getInfo()['features']
-    coordinate_elevation_pairs = [(point['geometry']['coordinates'], [point['properties']['elevation']]) for point in samples_list]
-    print('sample points obtained')
-    return coordinate_elevation_pairs
+    # Get elevation and landcover datasets
+    elevation = ee.Image('USGS/SRTMGL1_003')
+    landcover = ee.Image("ESA/WorldCover/v100/2020")
+
+    # Sample elevation and landcover data
+    elev_samples = elevation.sample(region=aoi, scale=scale, geometries=True)
+    land_samples = landcover.sample(region=aoi, scale=scale, geometries=False)
+
+    # Get the sampled data
+    elev_list = elev_samples.getInfo()['features']
+    land_list = land_samples.getInfo()['features']
+
+    # Combine elevation and landcover data for each point
+    coordinate_feature_pairs = []
+    for elev_feature, land_feature in zip(elev_list, land_list):
+        coords = elev_feature['geometry']['coordinates']
+        elevation_value = elev_feature['properties']['elevation']
+        terrain_type = land_feature['properties']['Map']
+        coordinate_feature_pairs.append((coords, [elevation_value, terrain_type]))
+
+    print('Sample points obtained')
+    return coordinate_feature_pairs
 
 def create_path(start_c, end_c, scale, bodyweight=70, height=1.70):
 
@@ -76,7 +89,7 @@ def create_path(start_c, end_c, scale, bodyweight=70, height=1.70):
 
     return path, cost
 
-def path_to_coords(path, scale, start_m, end_m):
+def path_to_coords(path, scale, start_m, end_m, start_c, end_c):
     path = np.array(path)
     angle = math.tan((end_m[0] - start_m[0])/(end_m[1] - start_m[1])) - math.pi/2
     rotation_matrix = np.array([[math.cos(angle), math.sin(angle)], [-math.sin(angle), math.cos(angle)]])
@@ -87,15 +100,24 @@ def path_to_coords(path, scale, start_m, end_m):
     
     return coord_path
 
+def smooth_points(points):
+    for i in range(len(points) - 1):
+        points[i] = [(points[i][0] + points[i + 1][0])/2, (points[i][1] + points[i + 1][1])/2]
+
 def create_map(start_c, end_c, bodyweight=70, height=1.70):
-    print(start_c, end_c)
+    try:
+        start_c = (float(start_c[0]), float(start_c[1]))
+        end_c = (float(end_c[0]), float(end_c[1]))
+        bodyweight = float(bodyweight)
+        height = float(height)
+    except:
+        raise(TypeError)
     start_m, end_m = (0,0), coords_to_m(start_c, end_c)
     scale = get_scale(start_m, end_m)
 
     path, cost = create_path(start_c, end_c, scale, bodyweight, height)
-    print(path)
-    coord_path = path_to_coords(path, scale, start_m, end_m)
-    print(coord_path)
+    coord_path = path_to_coords(path, scale, start_m, end_m, start_c, end_c)
+    smooth_points(coord_path)
     route = ee.Geometry.LineString(coord_path)
 
     route_map = geemap(center=[(start_c[0] + end_c[0])/2, (start_c[1] + end_c[1])/2], zoom=14)
@@ -109,6 +131,6 @@ def create_map(start_c, end_c, bodyweight=70, height=1.70):
     route_map.save(outfile=output_file)
 
     print(f'route map save to {output_file}')
-    return coord_path
+    return coord_path, cost
 
-#create_map(start_c, end_c)
+create_map(start_c, end_c)

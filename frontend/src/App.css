@@ -1,0 +1,25 @@
+.input-box{
+    font-family: "Pacifico", cursive;
+    color:rgb(119, 103, 103);
+    border: none; /* Remove all borders */
+    border-bottom: 2px solid black; /* Only bottom border */
+    background-color: transparent; /* Transparent background */
+    font-size:20px;
+    outline: none; /* Remove default focus outline */
+    width: 200px; /* Optional: Adjust width */
+    
+}
+
+.control-button{
+    background-color:rgb(178, 110, 0);
+    font-family: "Chango", serif;
+    font-weight: 400;
+    color:white;
+    font-size:15px;
+    margin-left:110px;
+    margin-top:35px;
+    width: 130px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
+    
+}

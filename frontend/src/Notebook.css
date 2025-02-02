@@ -29,7 +29,6 @@
 }
 
 
-
 .page {
   background-repeat: no-repeat;
   width: 100%;
@@ -85,14 +84,14 @@
 
 .page-text {
   font-family: "Pacifico", cursive;
-  color:rgb(0, 0, 0);
-  text-shadow: 2px 2px #bababa;
-    font-weight: 400;
+  color:rgb(56, 55, 55);
+  text-shadow: 2px 2px #91919169;
+  font-weight: 400;
   font-style: normal; 
   text-align: center;
   text-align: left;
   margin-left:20px;
-  line-height:35px;
+  line-height:30px;
 
 }
 .controls-right {

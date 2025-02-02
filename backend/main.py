@@ -130,13 +130,13 @@ def create_path(coord_id):
     #gee_data.create_map(coord_tuple)
     #new_path = "route_map.html"
     
-    try:
-        db.session.add(new_path)
-        db.session.commit()
-    except Exception as e:
-        return jsonify({"message": str(e)}), 400
+    # try:
+    #     db.session.add(new_path)
+    #     db.session.commit()
+    # except Exception as e:
+    #     return jsonify({"message": str(e)}), 400
     
-    return jsonify({"message": "Path created!!"}), 201
+    # return jsonify({"message": "Path created!!"}), 201
     
 if __name__ == '__main__':
     with app.app_context():

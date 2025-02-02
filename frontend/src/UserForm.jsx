@@ -37,8 +37,6 @@ const UserForm = ({ existingUser = {}, updateCallback }) => {
 
             <input 
                 className="input-box"
-            <input
-
                 type="text"
                 id="firstName"
                 value={firstName}

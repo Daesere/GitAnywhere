@@ -88,6 +88,7 @@ def path_to_coords(path, scale, start_m, end_m):
     return coord_path
 
 def create_map(start_c, end_c, bodyweight=70, height=1.70):
+    print(start_c, end_c)
     start_m, end_m = (0,0), coords_to_m(start_c, end_c)
     scale = get_scale(start_m, end_m)
 

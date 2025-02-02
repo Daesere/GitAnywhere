@@ -46,14 +46,14 @@ def update_user(user_id):
     return jsonify({"message": "User updated"}), 200
 
 # DELETE
-@app.route("/delete_user/<int:user_id>", methods=["DELETE"])
-def delete_user(user_id):
-    user = User.query.get(user_id)
+@app.route("/delete_user", methods=["DELETE"])
+def delete_user():
+    # user = User.query.all()
 
-    if not user:
-        return jsonify({"message": "User not found"}), 404
+    # if not user:
+    #     return jsonify({"message": "User not found"}), 404
     
-    db.session.delete(user)
+    User.query.delete()
     db.session.commit()
 
     return jsonify({"message": "User deleted"}), 200

@@ -4,6 +4,7 @@ import './App.css'
 import UserForm from './UserForm'
 import CoordForm from './CoordForm'
 import CoordNuke from './CoordNuke'
+import UserNuke from './UserNuke'
 import Notebook from "./Flipbook";
 import Maps from "./maps";
 
@@ -76,6 +77,9 @@ function App() {
 
     <div>
       <CoordNuke />
+    </div>
+    <div>
+      <UserNuke />
     </div>
 
     

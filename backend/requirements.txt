@@ -2,3 +2,4 @@ Flask
 flask-SQLAlchemy
 flask-cors
 simplekml
+PyGithub

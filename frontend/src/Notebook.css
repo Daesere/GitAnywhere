@@ -19,51 +19,113 @@
 /* Static Cover */
 .static-cover {
   position: absolute;
-  width: 900px; /* Match the flipbook width */
-  height: 550px; /* Match the flipbook height */
-  background-color: #007000; /* Cover background color */
+  border-radius: 25px;
+  border-width: 25px;
+  width: 840px; /* Match the flipbook width */
+  height: 540px; /* Match the flipbook height */
+  background-color: #64431a; /* Cover background color */
   z-index: -1; /* Place it behind the flipbook */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
 }
 
 
 
 .page {
-  width:100%;
+  background-repeat: no-repeat;
+  width: 100%;
   height:100%;
+  background-position: center center;
+  text-align:center;
+  margin:auto;
   background-color: #fffee8;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("./images/notebook.avif"); /* Add your page image path */
-  padding: 20px;
+  background-image: url("./images/Notebook.jpg"); /* Add your page image path */
   box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
+  background-size: cover;
 }
 
-.page-content {
-  text-align: center;
-}
 
-.page-header, .page-footer {
-  font-size: 18px;
+.page-header {
+  font-family: "Chango", serif;
+  font-weight: 400;
+  color:white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-style: normal;
+  margin-top:15px;
   font-weight: bold;
+  text-align:left;
+  margin-left:15px;
 }
+
+.page-footer-right {
+  position: absolute;
+  bottom:10px;
+  right:0px;
+  font-size: 18px;
+  margin-bottom:2px;
+  font-weight: bold;
+  text-align:right;
+  padding-right:15px;
+  right:180px;
+}
+
+.page-footer-left{
+  position: absolute;
+  bottom:10px;
+  font-size: 18px;
+  margin-bottom:2px;
+  font-weight: bold;
+  text-align:left;
+  left:195px;
+}
+
 
 .page-text {
-  font-size: 16px;
-  margin-top: 10px;
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal; 
+  text-align: center;
+  text-align: left;
+  margin-left:20px;
+  line-height:35px;
+
 }
-.controls {
-  position:absolute;
-  margin-left: 20px;
+.controls-right {
+  position: absolute;
+  right: 250px;
+  bottom:30px;
   text-align: center;
   z-index:2;
 }
-  
-.controls button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  font-size: 1rem;
+
+.controls-left {
+  position: absolute;
+  bottom: 30px;
+  left: 250px;
+  text-align: center;
+  z-index:2;
+}
+
+.controls-right button{
+  background-image: url("./images/forward-arrow.png");
+}
+.controls-left button{
+  background-image: url("./images/backward-arrow.png");
+}
+.controls-right button, .controls-left button {
+  height:60px;
+  background-repeat: no-repeat;
+  width:60px;
+  background-size:cover;
   cursor: pointer;
+  z-index: 2;
+  background-color:rgba(0, 0, 0, 0);
+  border-color:rgba(255, 0, 0, 0)
+}
+
+.controls-right button span, .controls-left button span {
+  display: none;
 }

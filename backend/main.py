@@ -127,7 +127,7 @@ def create_path():
     start_coord = (float(coord.longitude_1), float(coord.latitude_1))
     end_coord = (float(coord.longitude_2), float(coord.latitude_2))
     #GET PATH WITH COOL FUNCTION
-    new_path = create_map(start_coord, end_coord)
+    new_path = create_map(start_coord, end_coord, weight, height)
     path_obj = Path(html_path=str(new_path))
     #ADD LES BHAY A MAX
     # UPDATE LA MAP

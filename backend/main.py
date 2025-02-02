@@ -2,7 +2,7 @@
 from flask import request, jsonify
 from config import app, db
 from models import User, Coordinates, Path
-import gee_data
+from gee_data import create_map
 ## USER LIST
 # READ
 @app.route("/users", methods=['GET'])
@@ -103,21 +103,19 @@ def delete_coord():
 #READ Recent Path
 @app.route("/paths", methods=['GET'])
 def get_paths():
-    paths = Path.query.first()
+    paths = Path.query.all()
     if not paths:
         return jsonify({"message": "No paths found"})
     return jsonify({"paths": [path.to_json() for path in paths]})
 
 #Create path
-@app.route("/create_path/<int:coord_id>", methods=['POST'])
-def create_path(coord_id):
-    coord = Coordinates.query.get(coord_id)
+@app.route("/create_path", methods=['POST'])
+def create_path():
+    coord = Coordinates.query.first()
     if not coord:
         return jsonify({"message": "Coord not found"}), 404
     
-    extra = request.args.get("extra")
-    if extra:
-        user = User.query.get(extra)
+    user = User.query.first()
     if user:
         weight = user.weight
         height = user.height
@@ -125,18 +123,31 @@ def create_path(coord_id):
         weight = 70
         height = 1.70
 
-    coord_tuple = ((coord.longitude_1, coord.latitude_1), (coord.longitude_2, coord.latitude_2), weight, height)
+    #coord_tuple = ((coord.longitude_1, coord.latitude_1), (coord.longitude_2, coord.latitude_2), weight, height)
+    start_coord = (float(coord.longitude_1), float(coord.latitude_1))
+    end_coord = (float(coord.longitude_2), float(coord.latitude_2))
     #GET PATH WITH COOL FUNCTION
-    new_path = gee_data.create_map(coord_tuple)
-    
+    new_path = create_map(start_coord, end_coord)
+    path_obj = Path(html_path=str(new_path))
+    #ADD LES BHAY A MAX
+    # UPDATE LA MAP
     try:
-        db.session.add(new_path)
+        db.session.add(path_obj)
         db.session.commit()
     except Exception as e:
         return jsonify({"message": str(e)}), 400
     
     return jsonify({"message": "Path created!!"}), 201
     
+# DELETE
+@app.route("/delete_path", methods=["DELETE"])
+def delete_path():
+    
+    Path.query.delete()
+    db.session.commit()
+
+    return jsonify({"message": "Paths deleted"}), 200
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()

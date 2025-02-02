@@ -16,7 +16,7 @@ def find_path(points, scale, bodyweight, height):
     elevation_grid = to_elevation_grid(points)
     pending_list = [[[0,0],0]]
     base = len(elevation_grid)
-    print(len(elevation_grid[0]), len(elevation_grid), scale)
+    # print(len(elevation_grid[0]), len(elevation_grid), scale)
 
     grid = []
     for i in range(base):

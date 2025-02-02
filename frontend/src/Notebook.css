@@ -85,7 +85,9 @@
 
 .page-text {
   font-family: "Pacifico", cursive;
-  font-weight: 400;
+  color:rgb(0, 0, 0);
+  text-shadow: 2px 2px #bababa;
+    font-weight: 400;
   font-style: normal; 
   text-align: center;
   text-align: left;
@@ -127,5 +129,9 @@
 }
 
 .controls-right button span, .controls-left button span {
+  display: none;
+}
+
+.left-arrow-hidden{
   display: none;
 }

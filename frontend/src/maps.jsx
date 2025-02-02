@@ -8,6 +8,7 @@ const containerStyle = {
   justifyContent: 'center',
   alignItems: 'center',
   margin: '0 auto',
+  zIndex:5,
 }
 
 const center = {

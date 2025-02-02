@@ -104,7 +104,7 @@ const onConfirm = async (e) => {
         
         </button>
 
-        {isLocationConfirmed && (<button className="confirm-box" onClick={onConfirm}>Confirm Location</button>)}
+        {isLocationConfirmed && (<button className="control-button" onClick={onConfirm}>Confirm Location</button>)}
     </form>
 }
 

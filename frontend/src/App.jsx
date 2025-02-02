@@ -66,21 +66,43 @@ function App() {
   }
   
   return <>
+     
     <br />
     <br />
     <div className="App">
     </div>
 
-    <div className="App">
-    {isBookOpen && <Notebook />}
-      <button onClick={toggleBook}
-        className="book-box">
-      </button>
-    </div>
+    
     <br />
 
     <Maps />
 
+    <div className="App">
+    {isBookOpen && (
+      <div style={{
+        position: 'absolute', // Or 'fixed' depending on your needs
+        top: '0',
+        left: '0',
+        width: '100vw',
+        height: '150vh',
+        zIndex: 5, // Ensure it overlays on top
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <Notebook />
+      </div>
+    )}
+
+      <button onClick={toggleBook}
+        className="book-box"
+        style={{
+          position: 'relative', // Or 'fixed' depending on your needs
+          zIndex: 10, // Higher than the overlay
+        }}
+        >
+      </button>
+    </div>
     <div>
       <CoordNuke />
     </div>
